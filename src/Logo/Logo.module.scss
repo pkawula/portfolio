@@ -1,0 +1,22 @@
+@import '../assets/scss/variables.scss';
+
+.container {
+    padding: 1rem;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    text-decoration: none;
+
+    &__img {
+        max-width: 64px;
+        display: inline-block;
+    }
+
+    &__text {
+        font-size: 1rem;
+        font-weight: 500;
+        color: $color-primary;
+        display: inline-block;
+        padding-left: .5rem;
+    }
+}
