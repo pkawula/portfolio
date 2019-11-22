@@ -1,10 +1,12 @@
 import React from 'react';
-import Logo from './Logo/Logo';
+import Header from './Header/Header';
 
 class App extends React.Component {
   render() {
     return (
-      <Logo />
+      <>
+        <Header />
+      </>
     );
   }
 }

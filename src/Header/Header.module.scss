@@ -1,0 +1,17 @@
+@import '../assets/scss/variables.scss';
+
+.container {
+    display: block;
+
+    &__heading {
+        margin-top: 1rem;
+        text-align: center;
+        color: $color-primary;
+        font-size: 2rem;
+        font-weight: 600;
+
+        &Sub {
+            color: $color-brand;
+        }
+    }
+}
