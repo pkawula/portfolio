@@ -27,11 +27,30 @@
 
             &:nth-child(2) {
                 width: 50%;
+                transition: width 300ms ease;
             }
 
 
-            &:nth-child(3) {
+            &:last-child {
                 width: 75%;
+                transition: width 300ms ease;
+            }
+        }
+
+        &:hover {
+
+            //it doesn't work \/ | you have to repair this :hover statement
+            &_line {
+
+                opacity: 0;
+
+                &:nth-child(2) {
+                    width: 100%;
+                }
+
+                &:last-child {
+                    width: 100%;
+                }
             }
         }
     }
