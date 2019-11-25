@@ -1,16 +1,10 @@
 import React from "react";
-import Header from "../../Components/Header/Header";
-import Intro from "../../Components/Intro/Intro";
 import AppContext from "../../context";
+import Intro from "../../Components/Intro/Intro";
 
 class Landing extends React.Component {
   render() {
-    return (
-      <AppContext.Consumer>
-        <Header />
-        <Intro />
-      </AppContext.Consumer>
-    );
+    return <AppContext.Consumer>{() => <Intro />}</AppContext.Consumer>;
   }
 }
 

@@ -1,0 +1,14 @@
+@import "../../assets/scss/variables.scss";
+
+.pageTitle {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: $color-primary;
+  font-size: 2rem;
+  font-weight: 600;
+
+  &_Sub {
+    color: $color-brand;
+  }
+}

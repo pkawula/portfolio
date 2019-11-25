@@ -1,32 +1,42 @@
-@import '../../assets/scss/variables.scss';
+@import "../../assets/scss/variables.scss";
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
 
 .introContainer {
-    display: block;
+  display: block;
+  margin: 0 auto;
+  animation: slideInLeft 0.3s ease-out 1;
+
+  &__avatar {
+    max-width: 200px;
     margin: 0 auto;
+    display: block;
+    @include box-shadow;
+    border-radius: 50%;
+  }
 
-    &__avatar {
-        max-width: 200px;
-        margin: 0 auto;
-        display: block;
-        @include box-shadow;
-        border-radius: 50%;
-    }
+  &__heading {
+    font-size: 1.5rem;
+    color: $color-primary;
+    font-weight: 500;
+    margin: 0;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
 
-    &__heading {
-        font-size: 1.5rem;
-        color: $color-primary;
-        font-weight: 500;
-        margin: 0;
-        margin-top: 1rem;
-        margin-bottom: .5rem;
-        text-align: center;
-    }
-
-    &__description {
-        font-size: 1rem;
-        font-weight: 400;
-        text-align: justify;
-        margin: 0;
-        margin-bottom: .5rem;
-    }
+  &__description {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: justify;
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
 }
