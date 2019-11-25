@@ -1,9 +1,10 @@
-@import '../assets/scss/variables.scss';
+@import '../../assets/scss/variables.scss';
 
 .navContainer {
     position: fixed;
     top: 10px;
     right: 10px;
+    z-index: 9999;
 
     &__button {
         width: 68px;
@@ -37,20 +38,14 @@
             }
         }
 
-        &:hover {
+        &:hover &_line {
 
-            //it doesn't work \/ | you have to repair this :hover statement
-            &_line {
+            &:nth-child(2) {
+                width: 100%;
+            }
 
-                opacity: 0;
-
-                &:nth-child(2) {
-                    width: 100%;
-                }
-
-                &:last-child {
-                    width: 100%;
-                }
+            &:last-child {
+                width: 100%;
             }
         }
     }

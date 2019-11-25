@@ -1,4 +1,4 @@
-@import '../assets/scss/variables.scss';
+@import '../../assets/scss/variables.scss';
 
 .container {
     display: inline-flex;
@@ -7,7 +7,7 @@
     text-decoration: none;
 
     &__img {
-        max-width: 64px;
+        max-width: 2rem;
         display: inline-block;
     }
 
