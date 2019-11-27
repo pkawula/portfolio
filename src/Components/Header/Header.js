@@ -1,11 +1,12 @@
 import React from "react";
 import Logo from "../Logo/Logo";
-import Nav from "../Nav/Nav";
+import styles from "./Header.module.scss";
+// import Nav from "../Nav/Nav";
 
 const Header = () => (
-  <header>
+  <header className={styles.container}>
     <Logo />
-    <Nav />
+    {/* <Nav /> */}
   </header>
 );
 

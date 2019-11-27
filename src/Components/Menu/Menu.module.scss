@@ -11,8 +11,12 @@
 
 .container {
   animation: slideInRight 0.3s ease-out 1;
-  background: $bg-secondary; //you have to delete this line of code before deploying
-  z-index: 2;
+  background: $bg-secondary;
+  width: 90vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  position: fixed;
 
   &__nav {
     margin: 0 auto;

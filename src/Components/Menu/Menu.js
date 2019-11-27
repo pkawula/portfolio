@@ -3,7 +3,7 @@ import styles from "./Menu.module.scss";
 import { NavLink } from "react-router-dom";
 import Socials from "../Socials/Socials";
 
-const Menu = ({ closeMenuFn }) => (
+const Menu = () => (
   <section className={styles.container}>
     <article className={styles.container__nav}>
       <NavLink className={styles.container__nav_link} to="/skills">
@@ -17,7 +17,6 @@ const Menu = ({ closeMenuFn }) => (
       </NavLink>
     </article>
     <Socials />
-    <button onClick={closeMenuFn}>X</button>
   </section>
 );
 
