@@ -1,0 +1,22 @@
+@import "../../assets/scss/variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  &__link {
+    display: block;
+    text-decoration: none;
+
+    &_image {
+      width: 2rem;
+      // @include box-shadow;
+    }
+  }
+
+  @media screen and (min-width: 968px) {
+    flex-direction: column;
+  }
+}
