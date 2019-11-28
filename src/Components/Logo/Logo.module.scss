@@ -5,6 +5,8 @@
   flex-wrap: nowrap;
   align-items: center;
   text-decoration: none;
+  position: relative;
+  z-index: 3;
 
   &__img {
     max-width: 2rem;
