@@ -42,16 +42,6 @@ class Root extends React.Component {
       <BrowserRouter>
         <AppContext.Provider>
           <Header />
-
-          {/* {hamburgerClose ? (
-            <Nav
-              openMenuFn={isMenuOpen ? this.closeMenu : this.openMenu}
-              opened
-            />
-          ) : (
-            <Nav openMenuFn={isMenuOpen ? this.closeMenu : this.openMenu} />
-          )} */}
-
           {isMenuOpen ? (
             <Nav openMenuFn={this.closeMenu} btnClass />
           ) : (
