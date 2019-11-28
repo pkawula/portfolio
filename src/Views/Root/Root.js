@@ -5,7 +5,6 @@ import Header from "../../Components/Header/Header";
 import Landing from "../Landing/Landing";
 import Nav from "../../Components/Nav/Nav";
 import Menu from "../../Components/Menu/Menu";
-import styles from "./Root.module.scss";
 
 class Root extends React.Component {
   state = {
@@ -38,30 +37,26 @@ class Root extends React.Component {
   };
 
   render() {
-    const { isMenuOpen, hamburgerClose } = this.state;
+    const { isMenuOpen } = this.state;
     return (
       <BrowserRouter>
         <AppContext.Provider>
-          <Header className={styles.header} />
+          <Header />
 
-          {hamburgerClose ? (
-            <Nav openMenuFn={isMenuOpen ? this.closeMenu : this.openMenu} />
-          ) : (
+          {/* {hamburgerClose ? (
             <Nav
               openMenuFn={isMenuOpen ? this.closeMenu : this.openMenu}
-              navContainer__button
+              opened
             />
-          )}
-
-          {/* {isMenuOpen ? (
-            <Nav openMenuFn={this.closeMenu} />
           ) : (
-            <Nav
-              open
-              // className={styles.toggleMenu}
-              openMenuFn={this.openMenu}
-            />
+            <Nav openMenuFn={isMenuOpen ? this.closeMenu : this.openMenu} />
           )} */}
+
+          {isMenuOpen ? (
+            <Nav openMenuFn={this.closeMenu} btnClass />
+          ) : (
+            <Nav openMenuFn={this.openMenu} />
+          )}
           <Switch>
             <Route exact path="/" component={Landing}></Route>
           </Switch>

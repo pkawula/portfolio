@@ -1,18 +1,14 @@
 import React from "react";
 import styles from "./Nav.module.scss";
 
-const Nav = ({ openMenuFn }, navContainer__button) => {
-  const buttonType = navContainer__button
-    ? styles.navContainer__button
-    : styles.navContainer__buttonClose;
+const Nav = ({ openMenuFn, btnClass }) => {
+  const buttonType = btnClass ? styles.buttonLineOpened : styles.buttonLine;
   return (
-    <div className={styles.navContainer}>
-      <button onClick={openMenuFn} className={buttonType}>
-        <span className={styles.navContainer__button_line}></span>
-        <span className={styles.navContainer__button_line}></span>
-        <span className={styles.navContainer__button_line}></span>
-      </button>
-    </div>
+    <button onClick={openMenuFn} className={styles.button}>
+      <span className={buttonType}></span>
+      <span className={buttonType}></span>
+      <span className={buttonType}></span>
+    </button>
   );
 };
 

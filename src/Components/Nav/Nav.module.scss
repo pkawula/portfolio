@@ -1,50 +1,85 @@
 @import "../../assets/scss/variables.scss";
 
-.navContainer {
+.button {
   position: fixed;
   top: 10px;
   right: 10px;
   z-index: 3;
+  width: 68px;
+  margin: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
 
-  &__button {
-    width: 68px;
-    margin: auto;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
+  &Line {
+    display: block;
+    margin-top: 5px;
+    height: 5px;
+    border-radius: 3px;
+    background: $bg-secondary;
 
-    &_line {
+    &:nth-child(n) {
+      transition: transform 0.3s ease-in-out;
+      transform-origin: 10px 3px;
+    }
+
+    &:nth-child(1) {
+      margin-top: 0;
+      width: 100%;
+      transform: rotate(0deg);
+    }
+
+    &:nth-child(2) {
+      width: 50%;
+      transition: width 300ms ease;
+      transform: translateX(0);
+    }
+
+    &:last-child {
+      width: 75%;
+      transition: width 300ms ease;
+      transform: rotate(0deg);
+    }
+
+    &Opened {
       display: block;
       margin-top: 5px;
       height: 5px;
       border-radius: 3px;
-      background: $color-primary;
+      background-color: $bg-primary;
+
+      &:nth-child(n) {
+        transition: transform 0.3s ease-in-out;
+        transform-origin: 10px 3px;
+      }
 
       &:nth-child(1) {
         margin-top: 0;
-        width: 100%;
+        transform: rotate(45deg);
       }
 
       &:nth-child(2) {
-        width: 50%;
-        transition: width 300ms ease;
+        transform: translateX(200%);
       }
 
       &:last-child {
-        width: 75%;
-        transition: width 300ms ease;
+        transform: rotate(-45deg);
       }
     }
+  }
 
-    &:hover &_line {
-      &:nth-child(2) {
-        width: 100%;
-      }
+  &:hover &Line {
+    &:nth-child(2) {
+      width: 100%;
+    }
 
-      &:last-child {
-        width: 100%;
-      }
+    &:last-child {
+      width: 100%;
+    }
+
+    &Opened::nth-child(n) {
+      width: 100%;
     }
   }
 }
