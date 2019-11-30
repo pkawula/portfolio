@@ -34,4 +34,10 @@
       text-decoration: underline;
     }
   }
+
+  &Socials {
+    @media screen and (max-width: 767px) {
+      flex-direction: row;
+    }
+  }
 }

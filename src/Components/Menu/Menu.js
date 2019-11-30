@@ -16,7 +16,7 @@ const Menu = () => (
         Contact me
       </NavLink>
     </article>
-    <Socials />
+    <Socials isMenu />
   </section>
 );
 

@@ -40,3 +40,17 @@
     margin-bottom: 0.5rem;
   }
 }
+
+.wrapper {
+  position: relative;
+  & .Socials__container {
+    position: absolute;
+    bottom: 50px;
+    right: 1.66rem;
+    flex-direction: column;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+}
