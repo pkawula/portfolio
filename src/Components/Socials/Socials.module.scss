@@ -4,6 +4,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin: 0 auto;
+  max-width: 300px;
 
   &__link {
     display: block;
@@ -11,8 +13,8 @@
 
     &_image {
       width: 2rem;
-      @media screen and (min-width: 768px) {
-        width: 50px;
+      @media screen and (min-width: 1024px) {
+        width: 3rem;
       }
     }
   }

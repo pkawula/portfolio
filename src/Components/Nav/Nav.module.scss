@@ -72,40 +72,37 @@
       }
     }
   }
-
-  @media screen and (max-width: 967px) {
-    &:active &Line {
-      &:nth-child(1) {
-        margin-top: 0;
-        width: 100%;
-      }
-
-      &:nth-child(2) {
-        width: 50%;
-        transition: width 300ms ease;
-      }
-
-      &:last-child {
-        width: 75%;
-        transition: width 300ms ease;
-      }
+  &:active &Line {
+    &:nth-child(1) {
+      margin-top: 0;
+      width: 100%;
     }
 
-    &:focus &Line {
-      &:nth-child(1) {
-        margin-top: 0;
-        width: 100%;
-      }
+    &:nth-child(2) {
+      width: 50%;
+      transition: width 300ms ease;
+    }
 
-      &:nth-child(2) {
-        width: 50%;
-        transition: width 300ms ease;
-      }
+    &:last-child {
+      width: 75%;
+      transition: width 300ms ease;
+    }
+  }
 
-      &:last-child {
-        width: 75%;
-        transition: width 300ms ease;
-      }
+  &:focus &Line {
+    &:nth-child(1) {
+      margin-top: 0;
+      width: 100%;
+    }
+
+    &:nth-child(2) {
+      width: 50%;
+      transition: width 300ms ease;
+    }
+
+    &:last-child {
+      width: 75%;
+      transition: width 300ms ease;
     }
   }
 }
