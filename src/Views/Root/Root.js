@@ -41,7 +41,11 @@ class Root extends React.Component {
     return (
       <BrowserRouter>
         <AppContext.Provider>
-          {isMenuOpen ? <Header /> : <Header light />}
+          {isMenuOpen ? (
+            <Header closeMenuFn={this.closeMenu} />
+          ) : (
+            <Header light />
+          )}
           {isMenuOpen ? (
             <Nav openMenuFn={this.closeMenu} btnClass />
           ) : (
@@ -50,7 +54,7 @@ class Root extends React.Component {
           <Switch>
             <Route exact path="/" component={Landing}></Route>
           </Switch>
-          {isMenuOpen && <Menu />}
+          {isMenuOpen && <Menu closeMenuFn={this.closeMenu} />}
         </AppContext.Provider>
       </BrowserRouter>
     );
