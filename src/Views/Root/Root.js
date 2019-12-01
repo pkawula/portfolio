@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AppContext from "../../context";
 import Header from "../../Components/Header/Header";
 import Landing from "../Landing/Landing";
+import Skills from "../Skills/Skills";
 import Nav from "../../Components/Nav/Nav";
 import Menu from "../../Components/Menu/Menu";
 
@@ -53,6 +54,7 @@ class Root extends React.Component {
           )}
           <Switch>
             <Route exact path="/" component={Landing}></Route>
+            <Route exact path="/skills" component={Skills}></Route>
           </Switch>
           {isMenuOpen && <Menu closeMenuFn={this.closeMenu} />}
         </AppContext.Provider>
