@@ -1,6 +1,8 @@
 import React from "react";
 import AppContext from "../../context";
 import PageTitle from "../../Components/PageTitle/PageTitle";
+import styles from "./Skills.module.scss";
+import SkillSection from "../../Components/SkillSection/SkillSection";
 
 class Skills extends React.Component {
   render() {
@@ -9,7 +11,13 @@ class Skills extends React.Component {
     };
     return (
       <AppContext.Consumer>
-        {() => <PageTitle green>{pageTitle}</PageTitle>}
+        {() => (
+          <>
+            <PageTitle green>{pageTitle}</PageTitle>
+            <h2 className={styles.subHeading}>What I...</h2>
+            <SkillSection />
+          </>
+        )}
       </AppContext.Consumer>
     );
   }

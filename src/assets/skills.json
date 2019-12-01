@@ -1,0 +1,33 @@
+{
+  "skills": {
+    "sureAbout": [
+      "Semantic HTML",
+      "CSS grid and flexbox",
+      "JS: destructuring arrays",
+      "JS: DOM manipulations",
+      "JS: localStorage",
+      "JS: working with APIs",
+      "Markdown",
+      "Sass",
+      "Figma",
+      "CSS animations"
+    ],
+    "knowSomethingAbout": [
+      "JS ES6 + features",
+      "PWA - progressive web applications",
+      "Git",
+      "NPM and YARN scripts",
+      "Accessibility",
+      "ReactJS"
+    ],
+    "wantToLearn": [
+      "Typescript",
+      "Node.JS",
+      "Gatsby.js",
+      "GraphQL",
+      "Websockets",
+      "Server side rendering",
+      "and much more"
+    ]
+  }
+}
