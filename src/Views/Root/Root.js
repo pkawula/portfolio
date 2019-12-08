@@ -54,7 +54,7 @@ class Root extends React.Component {
           )}
           <Switch>
             <Route exact path="/" component={Landing}></Route>
-            <Route exact path="/skills" component={Skills}></Route>
+            <Route path="/skills" component={Skills}></Route>
           </Switch>
           {isMenuOpen && <Menu closeMenuFn={this.closeMenu} />}
         </AppContext.Provider>
