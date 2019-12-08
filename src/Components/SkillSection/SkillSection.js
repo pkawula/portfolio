@@ -1,20 +1,28 @@
 import React from "react";
 import styles from "./SkillSection.module.scss";
-import data from "../../assets/skills.json";
+import ok from "../../assets/images/icons/ok.png";
+import skillsList from "../../assets/skills.json";
 
-const sureAbout = data.skills.sureAbout;
 // const knowSomethingAbout = data.skills.knowSomethingAbout;
 // const wantToLearn = data.skills.wantToLearn;
 
 class SkillSection extends React.Component {
   render() {
+    const skillData = skillsList.skills;
     return (
       <section className={styles.wrapper}>
-        <article>
-          <h3>Title of category</h3>
-          <ul>
-            {sureAbout.map((skill, index) => (
-              <li key={index}>{skill}</li>
+        <article className={styles.wrapperSection}>
+          <h3 className={styles.wrapperSectionTitle}>...am sure about</h3>
+          <ul className={styles.wrapperSectionList}>
+            {skillData.sureAbout.map((value, index) => (
+              <li key={index} className={styles.wrapperSectionListItem}>
+                <img
+                  src={ok}
+                  alt="good"
+                  className={styles.wrapperSectionListItemIcon}
+                />
+                {value}
+              </li>
             ))}
           </ul>
         </article>
