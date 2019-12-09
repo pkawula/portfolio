@@ -6,6 +6,7 @@ import Landing from "../Landing/Landing";
 import Skills from "../Skills/Skills";
 import Nav from "../../Components/Nav/Nav";
 import Menu from "../../Components/Menu/Menu";
+import NoMatchPage from "../../Components/NoMatchPage/NoMatchPage";
 
 class Root extends React.Component {
   state = {
@@ -55,6 +56,7 @@ class Root extends React.Component {
           <Switch>
             <Route exact path="/" component={Landing}></Route>
             <Route path="/skills" component={Skills}></Route>
+            <Route component={NoMatchPage}></Route>
           </Switch>
           {isMenuOpen && <Menu closeMenuFn={this.closeMenu} />}
         </AppContext.Provider>

@@ -1,5 +1,14 @@
 @import "../../assets/scss/variables.scss";
 
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
 .wrapper {
   width: 100%;
   margin: 5rem auto 0 auto;
@@ -8,44 +17,11 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  animation: slideInLeft 0.3s ease-out 1;
 
-  &Section {
-    margin: 1rem 0;
-    width: 100%;
-
-    &:first-of-type {
-      margin-top: 0;
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: flex-start;
     }
-
-    &Title {
-      font-size: 2rem;
-      color: $color-brand;
-      text-transform: uppercase;
-      font-weight: 500;
-      text-align: center;
-      margin: 0;
-    }
-
-    &List {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-
-      &Item {
-        font-size: 1rem;
-        margin-top: 1rem;
-        font-weight: 400;
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        align-items: center;
-
-        &Icon {
-          width: 100%;
-          max-width: 45px;
-          padding-right: 0.5rem;
-        }
-      }
-    }
-  }
 }
