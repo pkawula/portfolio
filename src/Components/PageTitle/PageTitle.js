@@ -3,7 +3,7 @@ import styles from "./PageTitle.module.scss";
 
 const PageTitle = ({ children, green }) => {
   const defaultTitle = children ? (
-    children.title
+    children
   ) : (
     <>
       <span className={styles.pageTitle_Sub}>piotr </span>|{"{"}awula

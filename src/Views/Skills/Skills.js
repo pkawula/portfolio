@@ -6,15 +6,11 @@ import SkillSection from "../../Components/SkillSection/SkillSection";
 
 class Skills extends React.Component {
   render() {
-    const pageTitle = {
-      title: "My Skills"
-    };
-
     return (
       <AppContext.Consumer>
         {() => (
           <>
-            <PageTitle green>{pageTitle}</PageTitle>
+            <PageTitle green>My Skills</PageTitle>
             <h2 className={styles.subHeading}>What I...</h2>
             <SkillSection />
           </>
