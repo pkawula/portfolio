@@ -1,0 +1,27 @@
+@import "../../assets/scss/variables.scss";
+
+.wrapper {
+  display: block;
+
+  &Title {
+    font-size: 0.66rem;
+    color: #898989;
+    text-align: center;
+    margin: 0;
+
+    @media screen and (min-width: 768px) {
+      text-align: left;
+    }
+  }
+
+  &Captcha {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+
+    @media screen and (min-width: 768px) {
+      margin: 0;
+      text-align: left;
+    }
+  }
+}

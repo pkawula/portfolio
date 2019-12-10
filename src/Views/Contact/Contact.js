@@ -1,8 +1,17 @@
 import React from "react";
+import PageTitle from "../../Components/PageTitle/PageTitle";
+import ContactIntro from "../../Components/ContactIntro/ContactIntro";
+import SubmitForm from "../../Components/SubmitForm/SubmitForm";
 
 class Contact extends React.Component {
   render() {
-    return <h1>Hello in contact section</h1>;
+    return (
+      <>
+        <PageTitle>Contact Me</PageTitle>
+        <ContactIntro></ContactIntro>
+        <SubmitForm></SubmitForm>
+      </>
+    );
   }
 }
 
