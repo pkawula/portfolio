@@ -2,6 +2,7 @@
 
 .wrapper {
   display: block;
+  margin: 2rem 0 0;
 
   &Title {
     font-size: 0.66rem;
@@ -16,8 +17,8 @@
 
   &Captcha {
     display: inline-block;
-    margin: 0 auto;
     text-align: center;
+    margin: 0 auto;
 
     @media screen and (min-width: 768px) {
       margin: 0;
