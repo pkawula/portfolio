@@ -1,2 +1,57 @@
+@import "../../assets/scss/variables.scss";
+
 .formLabel {
+  display: block;
+  position: relative;
+  flex-basis: 48%;
+  margin-top: 3rem;
+
+  &:last-child {
+    flex-basis: 100%;
+  }
+
+  &Text {
+    font-size: 1rem;
+    color: #898989;
+    display: block;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    transition: 0.3s transform ease-in-out;
+  }
+
+  &Input,
+  &Textarea {
+    width: 100%;
+    display: block;
+    font-weight: 300;
+    font-size: 1rem;
+    color: $color-primary;
+    background: $bg-primary;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 3px solid lighten($bg-secondary, 60%);
+    transition: 0.3s border-bottom-color linear;
+
+    &:active,
+    &:focus,
+    &:valid {
+      border-bottom-color: $color-brand;
+
+      & ~ span {
+        transform: translate(-0.5rem, -2.5rem);
+        color: $color-primary;
+      }
+    }
+
+    &:focus {
+      outline: solid 2px lighten($color-brand, 10%);
+      outline-offset: 0.2rem;
+    }
+  }
+
+  &Textarea {
+    min-height: 160px;
+    resize: vertical;
+  }
 }

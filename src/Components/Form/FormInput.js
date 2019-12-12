@@ -7,22 +7,24 @@ const FormInput = ({ textarea, id, children, email }) => {
     <>
       {textarea ? (
         <label className={styles.formLabel} for={id}>
-          {children}
           <textarea
             className={styles.formLabelTextarea}
             id={id}
             name={id}
+            required
           ></textarea>
+          <span className={styles.formLabelText}>{children}</span>
         </label>
       ) : (
         <label className={styles.formLabel} for={id}>
-          {children}
           <input
             className={styles.formLabelInput}
             id={id}
             name={id}
             type={type}
+            required
           />
+          <span className={styles.formLabelText}>{children}</span>
         </label>
       )}
     </>
