@@ -4,9 +4,15 @@ import Button from "../Button/Button";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const SubmitForm = () => {
-  function onChange(value) {
+  const onChange = async value => {
     console.log("Captcha value:", value);
-  }
+    const resp = await fetch("https://www.google.com/recaptcha/api/siteverify");
+    const data = await resp.json();
+    console.log(data);
+  };
+
+  const onSubmit = () => {};
+
   return (
     <div className={styles.wrapper}>
       <p className={styles.wrapperTitle}>
@@ -18,7 +24,7 @@ const SubmitForm = () => {
           onChange={onChange}
         />
       </span>
-      <Button>Send</Button>
+      <Button onClick={onSubmit}>Send</Button>
     </div>
   );
 };

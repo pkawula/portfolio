@@ -32,6 +32,7 @@
     border: none;
     border-bottom: 3px solid lighten($bg-secondary, 60%);
     transition: 0.3s border-bottom-color linear;
+    outline: none;
 
     &:active,
     &:focus,
@@ -42,11 +43,6 @@
         transform: translate(-0.5rem, -2.5rem);
         color: $color-primary;
       }
-    }
-
-    &:focus {
-      outline: solid 2px lighten($color-brand, 10%);
-      outline-offset: 0.2rem;
     }
   }
 
