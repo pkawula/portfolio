@@ -3,7 +3,7 @@ import styles from "./Button.module.scss";
 
 const Button = ({ children }) => {
   return (
-    <button className={styles.btn} form="contactForm" type="submit">
+    <button className={styles.btn} type="submit">
       {children}
     </button>
   );
