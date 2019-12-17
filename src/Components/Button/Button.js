@@ -1,11 +1,19 @@
 import React from "react";
 import styles from "./Button.module.scss";
 
-const Button = ({ children }) => {
+const Button = ({ children, isDisabled }) => {
   return (
-    <button className={styles.btn} type="submit">
-      {children}
-    </button>
+    <>
+      {isDisabled ? (
+        <button disabled className={styles.btn} type="submit">
+          {children}
+        </button>
+      ) : (
+        <button className={styles.btn} type="submit">
+          {children}
+        </button>
+      )}
+    </>
   );
 };
 

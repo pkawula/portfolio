@@ -5,15 +5,42 @@ import styles from "./Form.module.scss";
 import Button from "../Button/Button";
 import ReCAPTCHA from "react-google-recaptcha";
 
+const recaptchaRef = React.createRef();
 class Form extends React.Component {
+  state = {
+    disabled: true
+  };
+
   onChange = value => {
-    console.log("Captcha value:", value);
+    console.log("Recaptcha value: ", value);
+    if (!value) {
+      this.setState({
+        disabled: true
+      });
+    } else {
+      this.setState({
+        disabled: false
+      });
+    }
+  };
+  onSubmit = () => {
+    const recaptchaValue = recaptchaRef.current.getValue();
+    this.props.onSubmit(recaptchaValue);
+
+    // grecaptcha.getResponse();
   };
 
   render() {
+    const { disabled } = this.state;
+
     return (
       <>
-        <form className={styles.wrapper} id="contactForm" method="POST">
+        <form
+          className={styles.wrapper}
+          id="contactForm"
+          method="POST"
+          onSubmit={this.onSubmit}
+        >
           <div className={styles.wrapperIntro}>
             <h3 className={styles.wrapperIntroTitle}>Let's keep in touch...</h3>
             <p className={styles.wrapperIntroParagraph}>
@@ -40,10 +67,15 @@ class Form extends React.Component {
             <span className={styles.wrapperSubmitCaptcha}>
               <ReCAPTCHA
                 sitekey="6LcrSccUAAAAAKYXV3UJy2N9iC6ATdH-OW5Lzjb-"
+                ref={recaptchaRef}
                 onChange={this.onChange}
               />
             </span>
-            <Button>Send</Button>
+            {disabled ? (
+              <Button isDisabled>Send</Button>
+            ) : (
+              <Button>Send</Button>
+            )}
           </div>
         </form>
       </>
