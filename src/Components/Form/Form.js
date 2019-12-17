@@ -11,23 +11,8 @@ class Form extends React.Component {
     disabled: true
   };
 
-  onChange = value => {
-    console.log("Recaptcha value: ", value);
-    if (!value) {
-      this.setState({
-        disabled: true
-      });
-    } else {
-      this.setState({
-        disabled: false
-      });
-    }
-  };
-  onSubmit = () => {
-    const recaptchaValue = recaptchaRef.current.getValue();
-    this.props.onSubmit(recaptchaValue);
-
-    // grecaptcha.getResponse();
+  onChange = () => {
+    this.setState({ disabled: false });
   };
 
   render() {
@@ -64,13 +49,12 @@ class Form extends React.Component {
             <p className={styles.wrapperSubmitTitle}>
               Show me that humanity is still in you {":)"}
             </p>
-            <span className={styles.wrapperSubmitCaptcha}>
-              <ReCAPTCHA
-                sitekey="6LcrSccUAAAAAKYXV3UJy2N9iC6ATdH-OW5Lzjb-"
-                ref={recaptchaRef}
-                onChange={this.onChange}
-              />
-            </span>
+            <ReCAPTCHA
+              sitekey="6LcrSccUAAAAAKYXV3UJy2N9iC6ATdH-OW5Lzjb-"
+              ref={recaptchaRef}
+              onChange={this.onChange}
+              align="center"
+            />
             {disabled ? (
               <Button isDisabled>Send</Button>
             ) : (
