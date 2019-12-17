@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./FormInput.module.scss";
 
-const FormInput = ({ textarea, id, children, email }) => {
+const FormInput = ({ textarea, id, children, email, checkName }) => {
   const type = email ? "email" : "text";
 
   return (
@@ -17,7 +17,7 @@ const FormInput = ({ textarea, id, children, email }) => {
           <span className={styles.formLabelText}>{children}</span>
         </label>
       ) : (
-        <label className={styles.formLabel} htmlFor={id}>
+        <label onChange={checkName} className={styles.formLabel} htmlFor={id}>
           <input
             className={styles.formLabelInput}
             id={id}

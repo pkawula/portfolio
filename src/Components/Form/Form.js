@@ -8,15 +8,28 @@ import ReCAPTCHA from "react-google-recaptcha";
 const recaptchaRef = React.createRef();
 class Form extends React.Component {
   state = {
-    disabled: true
+    disabled: true,
+    name: null,
+    email: null,
+    message: null,
+    formError: ""
   };
 
   onChange = () => {
     this.setState({ disabled: false });
   };
 
+  checkForm = e => {
+    if (!e.target.value || e.target.value === "") {
+      this.setState({
+        formError: `Invalid ${e.target.id}` //check if this func is working in other cases
+      });
+    }
+  };
+  //add the checkFormOnSubmit func when the user will be submitting the form
+
   render() {
-    const { disabled } = this.state;
+    const { disabled, formError } = this.state;
 
     return (
       <>
@@ -36,7 +49,11 @@ class Form extends React.Component {
           </div>
 
           <div className={styles.wrapperForm}>
-            <FormInput id="name">name</FormInput>
+            {formError && <span>{formError}</span>}{" "}
+            {/* you need to display error nicely */}
+            <FormInput checkName={this.checkForm} id="name">
+              name
+            </FormInput>
             <FormInput id="email" email>
               email
             </FormInput>
