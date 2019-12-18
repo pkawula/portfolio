@@ -12,6 +12,7 @@ const FormInput = ({ textarea, id, children, email, checkName }) => {
             className={styles.formLabelTextarea}
             id={id}
             name={id}
+            onChange={checkName}
             required
           ></textarea>
           <span className={styles.formLabelText}>{children}</span>

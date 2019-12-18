@@ -55,6 +55,8 @@
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
+    margin-top: 1rem;
+    position: relative;
 
     @media screen and (min-width: 768px) {
       grid-column: 1/2;
@@ -63,6 +65,15 @@
       justify-self: center;
       margin-left: auto;
       max-width: 90%;
+    }
+
+    &Error {
+      display: block;
+      position: absolute;
+      top: 0rem;
+      font-size: 0.75rem;
+      color: red;
+      left: 0;
     }
   }
 
