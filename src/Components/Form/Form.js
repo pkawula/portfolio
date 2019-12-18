@@ -13,9 +13,9 @@ class Form extends React.Component {
     email: null,
     message: null,
     formErrors: {
-      name: null,
-      email: null,
-      message: null
+      name: undefined,
+      email: undefined,
+      message: undefined
     }
   };
 
@@ -25,15 +25,24 @@ class Form extends React.Component {
 
   checkForm = e => {
     const inputName = e.target.id;
-    console.log(inputName);
-    if (!e.target.value || e.target.value === "") {
+    const inputValue = e.target.value;
+    if (!inputValue || inputValue === "") {
       this.setState({
-        formErrors: { [inputName]: `Invalid ${inputName}` }
+        disabled: true,
+        formErrors: { [inputName]: `The ${inputName} field cannot be empty!` }
       });
-      console.log(this.state);
+    }
+    if (
+      inputName === "email" &&
+      !inputValue.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+    ) {
+      this.setState({
+        disabled: true,
+        formErrors: { email: "Please write correct email address!" }
+      });
     } else {
       this.setState({
-        formErrors: { [inputName]: null }
+        formErrors: { email: undefined }
       });
     }
   };
@@ -61,30 +70,18 @@ class Form extends React.Component {
           </div>
 
           <div className={styles.wrapperForm}>
-            {/* {formError && <span>{formError}</span>} */}
-            {/* you need to display error nicely */}
             {name && <span className={styles.wrapperFormError}>{name}</span>}
             {email && <span className={styles.wrapperFormError}>{email}</span>}
             {message && (
               <span className={styles.wrapperFormError}>{message}</span>
             )}
-            <FormInput isValid={name} checkName={this.checkForm} id="name">
+            <FormInput checkInput={this.checkForm} id="name">
               name
             </FormInput>
-            <FormInput
-              isValid={email}
-              checkName={this.checkForm}
-              id="email"
-              email
-            >
+            <FormInput checkInput={this.checkForm} id="email" email>
               email
             </FormInput>
-            <FormInput
-              isValid={message}
-              checkName={this.checkForm}
-              textarea
-              id="message"
-            >
+            <FormInput checkInput={this.checkForm} textarea id="message">
               your message
             </FormInput>
           </div>

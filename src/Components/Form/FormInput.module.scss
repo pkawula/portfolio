@@ -50,5 +50,12 @@
   &Textarea {
     min-height: 160px;
     resize: vertical;
+    &:not(:empty) {
+      & ~ span {
+        transform: translate(-0.5rem, -2.5rem);
+        color: $color-primary;
+        text-transform: uppercase;
+      }
+    }
   }
 }
