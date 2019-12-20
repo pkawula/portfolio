@@ -56,7 +56,6 @@
     flex-wrap: wrap;
     align-items: center;
     margin-top: 1rem;
-    position: relative;
 
     @media screen and (min-width: 768px) {
       grid-column: 1/2;
@@ -67,13 +66,23 @@
       max-width: 90%;
     }
 
-    &Error {
-      display: block;
-      position: absolute;
-      top: 0rem;
+    &Errors {
+      display: inline-flex;
       font-size: 0.75rem;
-      color: red;
-      left: 0;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      &Error {
+        display: inline-block;
+        background: #f32b2b;
+        color: $color-secondary;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        @include box-shadow;
+        margin-top: 0.75rem;
+        animation: slideInLeft 0.3s ease-out 1;
+      }
     }
   }
 

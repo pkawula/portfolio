@@ -9,48 +9,60 @@ const recaptchaRef = React.createRef();
 class Form extends React.Component {
   state = {
     disabled: true,
-    name: null,
-    email: null,
-    message: null,
+    name: "",
+    email: "",
+    message: "",
+    captcha: false,
     formErrors: {
-      name: undefined,
-      email: undefined,
-      message: undefined
+      name: "",
+      email: "",
+      message: ""
     }
   };
 
-  onChange = () => {
-    this.setState({ disabled: false });
+  onCaptchaChange = () => {
+    this.setState({ captcha: true });
   };
 
-  checkForm = e => {
-    const inputName = e.target.id;
-    const inputValue = e.target.value;
-    if (!inputValue || inputValue === "") {
-      this.setState({
-        disabled: true,
-        formErrors: { [inputName]: `The ${inputName} field cannot be empty!` }
-      });
-    }
-    if (
-      inputName === "email" &&
-      !inputValue.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
-    ) {
-      this.setState({
-        disabled: true,
-        formErrors: { email: "Please write correct email address!" }
-      });
-    } else {
-      this.setState({
-        formErrors: { email: undefined }
-      });
+  handleUserInput = e => {
+    const fieldName = e.target.id;
+    const fieldValue = e.target.value;
+
+    this.setState(
+      {
+        [fieldName]: fieldValue
+      },
+      () => {
+        this.validateField(fieldName, fieldValue);
+      }
+    );
+  };
+
+  validateField = (fieldName, fieldValue) => {
+    const { formErrors } = this.state;
+    let matchEmail;
+    switch (fieldName) {
+      case "name":
+        formErrors.name = fieldValue
+          ? ""
+          : `The ${fieldName} field is required`;
+        break;
+      case "email":
+        matchEmail = fieldValue.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        formErrors.email = matchEmail ? "" : `Your ${fieldName} is wrong!`;
+        break;
+      case "message":
+        formErrors.message = fieldValue
+          ? ""
+          : `The ${fieldName} field is required`;
+        break;
+      default:
+        break;
     }
   };
-  //add the checkFormOnSubmit func when the user will be submitting the form
 
   render() {
-    const { disabled } = this.state;
-    const { name, email, message } = this.state.formErrors;
+    const { disabled, name, email, message, formErrors } = this.state;
 
     return (
       <>
@@ -58,7 +70,7 @@ class Form extends React.Component {
           className={styles.wrapper}
           id="contactForm"
           method="POST"
-          onSubmit={this.checkForm}
+          onSubmit={this.checkFormOnSubmit}
         >
           <div className={styles.wrapperIntro}>
             <h3 className={styles.wrapperIntroTitle}>Let's keep in touch...</h3>
@@ -70,20 +82,38 @@ class Form extends React.Component {
           </div>
 
           <div className={styles.wrapperForm}>
-            {name && <span className={styles.wrapperFormError}>{name}</span>}
-            {email && <span className={styles.wrapperFormError}>{email}</span>}
-            {message && (
-              <span className={styles.wrapperFormError}>{message}</span>
-            )}
-            <FormInput checkInput={this.checkForm} id="name">
+            <FormInput checkInput={this.handleUserInput} id="name" value={name}>
               name
             </FormInput>
-            <FormInput checkInput={this.checkForm} id="email" email>
+            <FormInput
+              checkInput={this.handleUserInput}
+              id="email"
+              email
+              value={email}
+            >
               email
             </FormInput>
-            <FormInput checkInput={this.checkForm} textarea id="message">
+            <FormInput
+              checkInput={this.handleUserInput}
+              textarea
+              id="message"
+              value={message}
+            >
               your message
             </FormInput>
+          </div>
+
+          <div className={styles.wrapperFormErrors}>
+            {Object.keys(formErrors).map((fieldName, i) => {
+              if (formErrors[fieldName].length > 0) {
+                console.log(formErrors[fieldName]);
+                return (
+                  <span key={i} className={styles.wrapperFormErrorsError}>
+                    {formErrors[fieldName]}
+                  </span>
+                );
+              } else return "";
+            })}
           </div>
 
           <div className={styles.wrapperSubmit}>
@@ -93,7 +123,7 @@ class Form extends React.Component {
             <ReCAPTCHA
               sitekey="6LcrSccUAAAAAKYXV3UJy2N9iC6ATdH-OW5Lzjb-"
               ref={recaptchaRef}
-              onChange={this.onChange}
+              onChange={this.onCaptchaChange}
               align="center"
             />
             {disabled ? (
