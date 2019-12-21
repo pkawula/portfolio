@@ -17,11 +17,14 @@ class Form extends React.Component {
       name: "",
       email: "",
       message: ""
-    }
+    },
+    formValid: false
   };
 
   onCaptchaChange = () => {
-    this.setState({ captcha: true });
+    this.setState({ captcha: true }, () => {
+      this.validateForm();
+    });
   };
 
   handleUserInput = e => {
@@ -73,6 +76,31 @@ class Form extends React.Component {
       default:
         break;
     }
+    this.validateForm();
+  };
+
+  validateForm = () => {
+    const { captcha, name, email, message } = this.state;
+
+    const formValidation = ({ formErrors }) => {
+      Object.keys(formErrors).map(fieldName => {
+        if (formErrors[fieldName].length > 0) {
+          return true;
+        } else return false;
+      });
+    };
+
+    if (
+      captcha &&
+      name &&
+      message &&
+      formValidation &&
+      email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+    ) {
+      this.setState({ disabled: false, formValid: true });
+    } else {
+      this.setState({ disabled: true, formValid: false });
+    }
   };
 
   render() {
@@ -84,7 +112,7 @@ class Form extends React.Component {
           className={styles.wrapper}
           id="contactForm"
           method="POST"
-          onSubmit={this.checkFormOnSubmit}
+          onSubmit={this.validateForm}
         >
           <div className={styles.wrapperIntro}>
             <h3 className={styles.wrapperIntroTitle}>Let's keep in touch...</h3>
@@ -120,7 +148,6 @@ class Form extends React.Component {
           <div className={styles.wrapperFormErrors}>
             {Object.keys(formErrors).map((fieldName, i) => {
               if (formErrors[fieldName].length > 0) {
-                console.log(formErrors[fieldName]);
                 return (
                   <span key={i} className={styles.wrapperFormErrorsError}>
                     {formErrors[fieldName]}
