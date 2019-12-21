@@ -39,22 +39,36 @@ class Form extends React.Component {
   };
 
   validateField = (fieldName, fieldValue) => {
-    const { formErrors } = this.state;
     let matchEmail;
+    let err;
     switch (fieldName) {
       case "name":
-        formErrors.name = fieldValue
-          ? ""
-          : `The ${fieldName} field is required`;
+        err = fieldValue ? "" : `The ${fieldName} field is required`;
+        this.setState(prevState => ({
+          formErrors: {
+            ...prevState.formErrors,
+            [fieldName]: err
+          }
+        }));
         break;
       case "email":
         matchEmail = fieldValue.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        formErrors.email = matchEmail ? "" : `Your ${fieldName} is wrong!`;
+        err = matchEmail ? "" : `Your ${fieldName} is wrong!`;
+        this.setState(prevState => ({
+          formErrors: {
+            ...prevState.formErrors,
+            [fieldName]: err
+          }
+        }));
         break;
       case "message":
-        formErrors.message = fieldValue
-          ? ""
-          : `The ${fieldName} field is required`;
+        err = fieldValue ? "" : `The ${fieldName} field is required`;
+        this.setState(prevState => ({
+          formErrors: {
+            ...prevState.formErrors,
+            [fieldName]: err
+          }
+        }));
         break;
       default:
         break;

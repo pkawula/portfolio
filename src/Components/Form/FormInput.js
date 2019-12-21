@@ -13,12 +13,18 @@ const FormInput = ({ textarea, id, children, email, checkInput }) => {
             id={id}
             name={id}
             onChange={checkInput}
+            onBlur={checkInput}
             required
           />
           <span className={styles.formLabelText}>{children}</span>
         </label>
       ) : (
-        <label onChange={checkInput} className={styles.formLabel} htmlFor={id}>
+        <label
+          onChange={checkInput}
+          onBlur={checkInput}
+          className={styles.formLabel}
+          htmlFor={id}
+        >
           <input
             className={styles.formLabelInput}
             id={id}
