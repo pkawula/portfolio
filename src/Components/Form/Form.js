@@ -19,7 +19,8 @@ class Form extends React.Component {
       email: "",
       message: ""
     },
-    formValid: false
+    formValid: false,
+    buttonText: "Send"
   };
 
   sendEmail = e => {
@@ -39,6 +40,7 @@ class Form extends React.Component {
   };
 
   sendFeedback = (templateId, email, message, name, user) => {
+    this.setState({ buttonText: "Sending..." });
     emailjs
       .send(
         "default_service",
@@ -51,7 +53,11 @@ class Form extends React.Component {
         user
       )
       .then(res => {
-        console.log("Email was sent", res);
+        this.setState({ buttonText: "Sent!", captcha: false });
+        setTimeout(() => {
+          this.setState({ buttonText: "Send", captcha: false, disabled: true });
+          //you have to apply a reset form function!
+        }, 1000);
       })
       .catch(err => console.error("Failed to send feedback. Error: ", err));
   };
@@ -139,7 +145,14 @@ class Form extends React.Component {
   };
 
   render() {
-    const { disabled, name, email, message, formErrors } = this.state;
+    const {
+      disabled,
+      name,
+      email,
+      message,
+      formErrors,
+      buttonText
+    } = this.state;
     return (
       <>
         <form
@@ -202,9 +215,9 @@ class Form extends React.Component {
               align="center"
             />
             {disabled ? (
-              <Button isDisabled>Send</Button>
+              <Button isDisabled>{buttonText}</Button>
             ) : (
-              <Button onSubmit={this.sendEmail}>Send</Button>
+              <Button onSubmit={this.sendEmail}>{buttonText}</Button>
             )}
           </div>
         </form>

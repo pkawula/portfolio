@@ -46,7 +46,7 @@
     margin-top: 2rem;
   }
 
-  &:focus {
+  &:active {
     color: transparent;
     transition: color 0.3s linear;
     background-color: $color-brand;
