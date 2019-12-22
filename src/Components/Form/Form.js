@@ -4,6 +4,7 @@ import Link from "../Link/Link";
 import styles from "./Form.module.scss";
 import Button from "../Button/Button";
 import ReCAPTCHA from "react-google-recaptcha";
+import emailjs from "emailjs-com";
 
 const recaptchaRef = React.createRef();
 class Form extends React.Component {
@@ -19,6 +20,40 @@ class Form extends React.Component {
       message: ""
     },
     formValid: false
+  };
+
+  sendEmail = e => {
+    e.preventDefault();
+    const {
+      REACT_APP_EMAILJS_TEMPLATEID: template,
+      REACT_APP_EMAILJS_USERID: user
+    } = this.props.env;
+
+    this.sendFeedback(
+      template,
+      this.state.email,
+      this.state.message,
+      this.state.name,
+      user
+    );
+  };
+
+  sendFeedback = (templateId, email, message, name, user) => {
+    emailjs
+      .send(
+        "default_service",
+        templateId,
+        {
+          email,
+          message,
+          name
+        },
+        user
+      )
+      .then(res => {
+        console.log("Email was sent", res);
+      })
+      .catch(err => console.error("Failed to send feedback. Error: ", err));
   };
 
   onCaptchaChange = () => {
@@ -105,14 +140,13 @@ class Form extends React.Component {
 
   render() {
     const { disabled, name, email, message, formErrors } = this.state;
-
     return (
       <>
         <form
           className={styles.wrapper}
           id="contactForm"
           method="POST"
-          onSubmit={this.validateForm}
+          onSubmit={this.sendEmail}
         >
           <div className={styles.wrapperIntro}>
             <h3 className={styles.wrapperIntroTitle}>Let's keep in touch...</h3>
@@ -170,7 +204,7 @@ class Form extends React.Component {
             {disabled ? (
               <Button isDisabled>Send</Button>
             ) : (
-              <Button>Send</Button>
+              <Button onSubmit={this.sendEmail}>Send</Button>
             )}
           </div>
         </form>
