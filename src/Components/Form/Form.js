@@ -20,7 +20,8 @@ class Form extends React.Component {
       message: ""
     },
     formValid: false,
-    buttonText: "Send"
+    buttonText: "Send",
+    sendError: ""
   };
 
   sendEmail = e => {
@@ -30,7 +31,7 @@ class Form extends React.Component {
       REACT_APP_EMAILJS_USERID: user
     } = this.props.env;
 
-    this.sendFeedback(
+    this.sendMessage(
       template,
       this.state.email,
       this.state.message,
@@ -39,7 +40,7 @@ class Form extends React.Component {
     );
   };
 
-  sendFeedback = (templateId, email, message, name, user) => {
+  sendMessage = (templateId, email, message, name, user) => {
     this.setState({ buttonText: "Sending..." });
     emailjs
       .send(
@@ -55,11 +56,17 @@ class Form extends React.Component {
       .then(res => {
         this.setState({ buttonText: "Sent!", captcha: false });
         setTimeout(() => {
-          this.setState({ buttonText: "Send", captcha: false, disabled: true });
-          //you have to apply a reset form function!
+          this.clear();
         }, 1000);
       })
-      .catch(err => console.error("Failed to send feedback. Error: ", err));
+      .catch(err => {
+        this.setState({
+          sendError: `Cannot send email right now. Please try again later. Error: ${err.text}`
+        });
+        setTimeout(() => {
+          this.clear();
+        }, 5000);
+      });
   };
 
   onCaptchaChange = () => {
@@ -144,6 +151,25 @@ class Form extends React.Component {
     }
   };
 
+  clear = () => {
+    this.setState({
+      disabled: true,
+      name: "",
+      email: "",
+      message: "",
+      captcha: false,
+      formErrors: {
+        name: "",
+        email: "",
+        message: ""
+      },
+      formValid: false,
+      buttonText: "Send",
+      sendError: ""
+    });
+    recaptchaRef.current.reset();
+  };
+
   render() {
     const {
       disabled,
@@ -151,7 +177,8 @@ class Form extends React.Component {
       email,
       message,
       formErrors,
-      buttonText
+      buttonText,
+      sendError
     } = this.state;
     return (
       <>
@@ -202,6 +229,9 @@ class Form extends React.Component {
                 );
               } else return "";
             })}
+            {sendError && (
+              <span className={styles.wrapperFormErrorsError}>{sendError}</span>
+            )}
           </div>
 
           <div className={styles.wrapperSubmit}>
