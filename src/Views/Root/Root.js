@@ -8,6 +8,7 @@ import Nav from "../../Components/Nav/Nav";
 import Menu from "../../Components/Menu/Menu";
 import NoMatchPage from "../../Components/NoMatchPage/NoMatchPage";
 import Contact from "../Contact/Contact";
+import Projects from "../Projects/Projects";
 
 class Root extends React.Component {
   state = {
@@ -57,6 +58,7 @@ class Root extends React.Component {
           <Switch>
             <Route exact path="/" component={Landing}></Route>
             <Route path="/skills" component={Skills}></Route>
+            <Route path="/projects" component={Projects}></Route>
             <Route path="/contact" component={Contact}></Route>
             <Route component={NoMatchPage}></Route>
           </Switch>
