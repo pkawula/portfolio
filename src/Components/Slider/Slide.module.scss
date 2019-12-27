@@ -1,6 +1,77 @@
 @import "../../assets/scss/variables.scss";
 
-.wrapper {
+.slideWrapper {
   width: 100%;
   margin: 0rem auto;
+  position: relative;
+
+  &Controls {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: -3rem;
+    left: 0;
+
+    &Btn {
+      padding: 0.5rem 1rem;
+      background: darken($bg-primary, 5%);
+      color: $color-primary;
+      border: 2px solid $color-brand;
+      font-weight: 500;
+      border-radius: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      font-size: 0.83rem;
+      text-transform: uppercase;
+    }
+  }
+
+  &Description {
+    &Title {
+      font-size: 2rem;
+      color: $color-brand;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 0;
+    }
+
+    &Paragraph {
+      margin: 1rem auto;
+      text-align: justify;
+      font-size: 1rem;
+    }
+  }
+
+  &Links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &Link {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 50%;
+      border: 2px solid $color-brand;
+      padding: 0;
+
+      &Img {
+        max-width: 32px;
+        margin: 0;
+        padding: 0;
+      }
+
+      &Text {
+        display: none;
+        color: $color-primary;
+        font-weight: 500;
+        line-height: 1;
+        font-size: 1rem;
+        text-transform: uppercase;
+      }
+    }
+  }
 }
