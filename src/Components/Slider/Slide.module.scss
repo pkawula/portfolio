@@ -5,30 +5,6 @@
   margin: 0rem auto;
   position: relative;
 
-  &Controls {
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    top: -3rem;
-    left: 0;
-
-    &Btn {
-      padding: 0.5rem 1rem;
-      background: darken($bg-primary, 5%);
-      color: $color-primary;
-      border: 2px solid $color-brand;
-      font-weight: 500;
-      border-radius: 1rem;
-      line-height: 1;
-      cursor: pointer;
-      font-size: 0.83rem;
-      text-transform: uppercase;
-    }
-  }
-
   &Description {
     &Title {
       font-size: 2rem;
@@ -47,30 +23,171 @@
 
   &Links {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    margin: 2rem auto;
 
     &Link {
+      position: relative;
       display: flex;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
       align-items: center;
-      cursor: pointer;
-      border-radius: 50%;
-      border: 2px solid $color-brand;
+      font-weight: 500;
+      text-transform: uppercase;
+      text-decoration: none;
       padding: 0;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      background: $bg-primary;
+      border: 3px solid $color-brand;
+      border-radius: 3rem;
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: 2px 2px 8px -1px rgba(0, 0, 0, 0.3);
+      transition: max-width 0.5s linear;
+
+      @media screen and (min-width: 768px) {
+        max-width: 70px;
+      }
 
       &Img {
         max-width: 32px;
         margin: 0;
         padding: 0;
+
+        @media screen and (min-width: 768px) {
+          display: block;
+          max-width: 64px;
+          border-radius: 50%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: 2;
+
+          &:last-child {
+            left: unset;
+            right: 0;
+          }
+        }
       }
 
       &Text {
-        display: none;
         color: $color-primary;
         font-weight: 500;
-        line-height: 1;
         font-size: 1rem;
         text-transform: uppercase;
+        margin-left: 1rem;
+        margin-right: 1rem;
+
+        @media screen and (min-width: 768px) {
+          display: block;
+          font-size: 2rem;
+          line-height: 64px;
+          margin-left: 0.5rem;
+          margin-right: calc(64px + 0.5rem);
+
+          &:last-child {
+            margin-left: calc(64px + 0.5rem);
+            margin-right: 0.5rem;
+          }
+        }
+      }
+
+      &:hover {
+        transform: scale(1.03);
+
+        @media screen and (min-width: 768px) {
+          transform: none;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
+  &Gallery {
+    position: relative;
+    &Title {
+      font-size: 2rem;
+      color: $color-brand;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 0 auto 2rem;
+
+      @media screen and (min-width: 768px) {
+        display: none;
+      }
+    }
+
+    &Controls {
+      position: absolute;
+      width: 90%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -5%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0;
+
+      &Btn {
+        cursor: pointer;
+        font-size: 4rem;
+        color: #bebebe;
+        font-weight: 500;
+        &:hover {
+          color: $color-primary;
+        }
+      }
+    }
+
+    &Slides {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 0;
+      overflow-x: hidden;
+
+      &Slide {
+        max-width: 100%;
+        margin: 0;
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    &Container {
+      flex-basis: 30%;
+      order: 2;
+      margin-left: 2rem;
+    }
+
+    &Gallery {
+      order: 1;
+      flex-basis: 60%;
+      margin-right: 2rem;
+
+      &Controls {
+        width: 100%;
+        transform: translate(-50%, -50%);
+        &Btn {
+          font-size: 7rem;
+        }
+      }
+
+      &Slides {
+        max-width: 80%;
+        justify-self: center;
+        margin: 0 auto;
+        &Slide {
+          display: block;
+        }
       }
     }
   }

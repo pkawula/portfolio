@@ -3,4 +3,37 @@
 .wrapper {
   width: 100%;
   margin: 4rem auto 0;
+  position: relative;
+
+  &Controls {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: -3rem;
+    left: 0;
+
+    &Btn {
+      padding: 0.5rem 1rem;
+      background: darken($bg-primary, 5%);
+      color: $color-primary;
+      border: 2px solid $color-brand;
+      font-weight: 500;
+      border-radius: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      font-size: 0.83rem;
+      text-transform: uppercase;
+      box-shadow: 2px 2px 8px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    @media screen and (min-width: 768px) {
+      justify-content: flex-end;
+      &Btn {
+        margin: 0 1rem;
+      }
+    }
+  }
 }
