@@ -4,17 +4,26 @@ import styles from "./Slider.module.scss";
 
 class Slider extends React.Component {
   state = {
-    repos: []
+    repos: {}
   };
-  render() {
+
+  componentDidMount() {
+    // const api = 'https://api.github.com/users/pkawula/repos';
+    // const data = async () => fetch(api);
+    // const repos = await data.json();
+    // await console.log(repos);
+
     fetch("https://api.github.com/users/pkawula/repos")
       .then(res => res.json())
       .then(res => {
-        for (const data of res) {
-          const { id, name, html_url, description } = data;
-          this.setState({ repos: data });
-        }
-      });
+        const repos = res;
+        this.setState({ repos: repos });
+      })
+      .catch(err => console.log("Error: ", err));
+  }
+
+  render() {
+    const projects = Object.entries(this.state.repos);
 
     return (
       <section className={styles.wrapper}>
@@ -22,12 +31,25 @@ class Slider extends React.Component {
           <span className={styles.wrapperControlsBtn}>Prev</span>
           <span className={styles.wrapperControlsBtn}>Next</span>
         </div>
-        {/* <Slide
-        {...title}
-        {...descritpion}
-        {...code}
-        {...demo}
-      ></Slide> */}
+        <div
+          style={{ width: `${projects.length * 100}%` }}
+          className={styles.wrapperSlides}
+        >
+          {projects.map((project, index) => {
+            const { name, html_url, description, homepage } = project[1];
+            if (name && html_url && description && homepage) {
+              return (
+                <Slide
+                  key={index}
+                  title={name}
+                  code={html_url}
+                  description={description}
+                  demo={homepage}
+                ></Slide>
+              );
+            } else return null;
+          })}
+        </div>
       </section>
     );
   }

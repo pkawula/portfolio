@@ -4,6 +4,7 @@
   width: 100%;
   margin: 0rem auto;
   position: relative;
+  flex-basis: 100%;
 
   &Description {
     &Title {
@@ -63,7 +64,7 @@
           position: absolute;
           left: 0;
           top: 0;
-          z-index: 2;
+          z-index: 1;
 
           &:last-child {
             left: unset;
@@ -161,6 +162,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
+    flex-basis: 100%;
 
     &Container {
       flex-basis: 30%;
