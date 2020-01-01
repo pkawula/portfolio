@@ -1,29 +1,33 @@
 import React from "react";
 import Slide from "./Slide";
 import styles from "./Slider.module.scss";
+const api = "https://api.github.com/users/pkawula/repos";
 
 class Slider extends React.Component {
   state = {
-    repos: {}
+    repos: [],
+    width: ""
   };
 
-  componentDidMount() {
-    // const api = 'https://api.github.com/users/pkawula/repos';
-    // const data = async () => fetch(api);
-    // const repos = await data.json();
-    // await console.log(repos);
+  async componentDidMount() {
+    try {
+      const data = await fetch(api);
+      const repos = await data.json();
+      await this.setState({ repos: repos, width: repos.length * 100 });
 
-    fetch("https://api.github.com/users/pkawula/repos")
-      .then(res => res.json())
-      .then(res => {
-        const repos = res;
-        this.setState({ repos: repos });
-      })
-      .catch(err => console.log("Error: ", err));
+      if (!data.ok) {
+        throw Error(data.statusText);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
-    const projects = Object.entries(this.state.repos);
+    const { repos: projects } = this.state;
+    const { width } = this.state;
+
+    console.log(projects);
 
     return (
       <section className={styles.wrapper}>
@@ -31,23 +35,18 @@ class Slider extends React.Component {
           <span className={styles.wrapperControlsBtn}>Prev</span>
           <span className={styles.wrapperControlsBtn}>Next</span>
         </div>
-        <div
-          style={{ width: `${projects.length * 100}%` }}
-          className={styles.wrapperSlides}
-        >
+        <div style={{ width: `${width}%` }} className={styles.wrapperSlides}>
           {projects.map((project, index) => {
-            const { name, html_url, description, homepage } = project[1];
-            if (name && html_url && description && homepage) {
-              return (
-                <Slide
-                  key={index}
-                  title={name}
-                  code={html_url}
-                  description={description}
-                  demo={homepage}
-                ></Slide>
-              );
-            } else return null;
+            const { name, html_url, description, homepage } = project;
+            return (
+              <Slide
+                key={index}
+                title={name}
+                code={html_url}
+                description={description}
+                demo={homepage}
+              ></Slide>
+            );
           })}
         </div>
       </section>

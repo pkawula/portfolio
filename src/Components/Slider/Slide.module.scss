@@ -5,6 +5,7 @@
   margin: 0rem auto;
   position: relative;
   flex-basis: 100%;
+  flex-shrink: 1;
 
   &Description {
     &Title {
