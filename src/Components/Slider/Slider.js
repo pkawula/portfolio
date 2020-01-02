@@ -6,7 +6,8 @@ const api = "https://api.github.com/users/pkawula/repos";
 class Slider extends React.Component {
   state = {
     repos: [],
-    width: ""
+    width: "",
+    current: 0
   };
 
   async componentDidMount() {
@@ -23,19 +24,51 @@ class Slider extends React.Component {
     }
   }
 
-  render() {
-    const { repos: projects } = this.state;
-    const { width } = this.state;
+  prevSlide = () => {
+    const { repos, current } = this.state;
+    const slides = repos.length;
 
-    console.log(projects);
+    if (slides > 0) {
+      if (current === 0) {
+        let moveSlide = -100 + 100 / slides;
+        this.setState({ current: moveSlide });
+      } else {
+        this.setState({ current: current + 100 / slides });
+      }
+    }
+  };
+
+  nextSlide = () => {
+    const { repos, current } = this.state;
+    const slides = repos.length;
+
+    if (slides > 0) {
+      if (current > -100 + 100 / slides) {
+        let moveSlide = current - 100 / slides;
+        this.setState({ current: moveSlide });
+      } else {
+        this.setState({ current: 0 });
+      }
+    }
+  };
+
+  render() {
+    const { repos: projects, width, current } = this.state;
 
     return (
       <section className={styles.wrapper}>
         <div className={styles.wrapperControls}>
-          <span className={styles.wrapperControlsBtn}>Prev</span>
-          <span className={styles.wrapperControlsBtn}>Next</span>
+          <span className={styles.wrapperControlsBtn} onClick={this.prevSlide}>
+            Prev
+          </span>
+          <span className={styles.wrapperControlsBtn} onClick={this.nextSlide}>
+            Next
+          </span>
         </div>
-        <div style={{ width: `${width}%` }} className={styles.wrapperSlides}>
+        <div
+          style={{ width: `${width}%`, transform: `translateX(${current}%)` }}
+          className={styles.wrapperSlides}
+        >
           {projects.map((project, index) => {
             const { name, html_url, description, homepage } = project;
             return (
