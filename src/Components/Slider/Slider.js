@@ -58,29 +58,37 @@ class Slider extends React.Component {
     return (
       <section className={styles.wrapper}>
         <div className={styles.wrapperControls}>
-          <span className={styles.wrapperControlsBtn} onClick={this.prevSlide}>
+          <button
+            className={styles.wrapperControlsBtn}
+            onClick={this.prevSlide}
+          >
             Prev
-          </span>
-          <span className={styles.wrapperControlsBtn} onClick={this.nextSlide}>
+          </button>
+          <button
+            className={styles.wrapperControlsBtn}
+            onClick={this.nextSlide}
+          >
             Next
-          </span>
+          </button>
         </div>
-        <div
-          style={{ width: `${width}%`, transform: `translateX(${current}%)` }}
-          className={styles.wrapperSlides}
-        >
-          {projects.map((project, index) => {
-            const { name, html_url, description, homepage } = project;
-            return (
-              <Slide
-                key={index}
-                title={name}
-                code={html_url}
-                description={description}
-                demo={homepage}
-              ></Slide>
-            );
-          })}
+        <div className={styles.wrapperSlides}>
+          <div
+            style={{ width: `${width}%`, transform: `translateX(${current}%)` }}
+            className={styles.wrapperSlidesWrapper}
+          >
+            {projects.map((project, index) => {
+              const { name, html_url, description, homepage } = project;
+              return (
+                <Slide
+                  key={index}
+                  title={name}
+                  code={html_url}
+                  description={description}
+                  demo={homepage}
+                ></Slide>
+              );
+            })}
+          </div>
         </div>
       </section>
     );
