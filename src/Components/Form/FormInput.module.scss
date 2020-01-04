@@ -33,10 +33,12 @@
     border-bottom: 3px solid lighten($bg-secondary, 60%);
     transition: 0.3s border-bottom-color linear;
     outline: none;
+  }
 
+  &Input {
     &:active,
     &:focus,
-    &:valid {
+    &:not([value=""]) {
       border-bottom-color: $color-brand;
 
       & ~ span {
@@ -50,7 +52,12 @@
   &Textarea {
     min-height: 160px;
     resize: vertical;
+
+    &:active,
+    &:focus,
     &:not(:empty) {
+      border-bottom-color: $color-brand;
+
       & ~ span {
         transform: translate(-0.5rem, -2.5rem);
         color: $color-primary;

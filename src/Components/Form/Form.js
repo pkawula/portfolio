@@ -19,6 +19,11 @@ class Form extends React.Component {
       email: "",
       message: ""
     },
+    formErrBorder: {
+      name: false,
+      email: false,
+      message: false
+    },
     formValid: false,
     buttonText: "Send",
     sendError: ""
@@ -99,6 +104,10 @@ class Form extends React.Component {
           formErrors: {
             ...prevState.formErrors,
             [fieldName]: err
+          },
+          formErrBorder: {
+            ...prevState.formErrBorder,
+            [fieldName]: fieldValue ? false : true
           }
         }));
         break;
@@ -109,6 +118,10 @@ class Form extends React.Component {
           formErrors: {
             ...prevState.formErrors,
             [fieldName]: err
+          },
+          formErrBorder: {
+            ...prevState.formErrBorder,
+            [fieldName]: matchEmail ? false : true
           }
         }));
         break;
@@ -118,6 +131,10 @@ class Form extends React.Component {
           formErrors: {
             ...prevState.formErrors,
             [fieldName]: err
+          },
+          formErrBorder: {
+            ...prevState.formErrBorder,
+            [fieldName]: fieldValue ? false : true
           }
         }));
         break;
@@ -178,7 +195,8 @@ class Form extends React.Component {
       message,
       formErrors,
       buttonText,
-      sendError
+      sendError,
+      formErrBorder
     } = this.state;
     return (
       <>
@@ -198,7 +216,12 @@ class Form extends React.Component {
           </div>
 
           <div className={styles.wrapperForm}>
-            <FormInput checkInput={this.handleUserInput} id="name" value={name}>
+            <FormInput
+              checkInput={this.handleUserInput}
+              id="name"
+              value={name}
+              isErrored={formErrBorder.name}
+            >
               name
             </FormInput>
             <FormInput
@@ -206,6 +229,7 @@ class Form extends React.Component {
               id="email"
               email
               value={email}
+              isErrored={formErrBorder.email}
             >
               email
             </FormInput>
@@ -214,6 +238,7 @@ class Form extends React.Component {
               textarea
               id="message"
               value={message}
+              isErrored={formErrBorder.message}
             >
               your message
             </FormInput>

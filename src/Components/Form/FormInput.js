@@ -1,8 +1,22 @@
 import React from "react";
 import styles from "./FormInput.module.scss";
 
-const FormInput = ({ textarea, id, children, email, checkInput, value }) => {
+const FormInput = ({
+  textarea,
+  id,
+  children,
+  email,
+  checkInput,
+  value,
+  isErrored
+}) => {
   const type = email ? "email" : "text";
+
+  const errColor = {
+    borderBottomColor: "#ff0000"
+  };
+
+  const inputErr = isErrored ? errColor : null;
 
   return (
     <>
@@ -16,6 +30,7 @@ const FormInput = ({ textarea, id, children, email, checkInput, value }) => {
             onBlur={checkInput}
             required
             value={value}
+            style={inputErr}
           />
           <span className={styles.formLabelText}>{children}</span>
         </label>
@@ -30,6 +45,7 @@ const FormInput = ({ textarea, id, children, email, checkInput, value }) => {
             type={type}
             required
             value={value}
+            style={inputErr}
           />
           <span className={styles.formLabelText}>{children}</span>
         </label>
