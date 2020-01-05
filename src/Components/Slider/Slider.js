@@ -7,7 +7,9 @@ class Slider extends React.Component {
   state = {
     repos: [],
     width: "",
-    current: 0
+    current: 0,
+    initialPosition: null,
+    moving: false
   };
 
   async componentDidMount() {
@@ -52,8 +54,45 @@ class Slider extends React.Component {
     }
   };
 
+  gestureStart = e => {
+    const windowWidth = window.screen.width;
+    const posStart = Math.floor(((windowWidth - e.pageX) / windowWidth) * 100);
+
+    this.setState({ initialPosition: posStart, moving: true });
+
+    const transformMatrix = window
+      .getComputedStyle(e.target)
+      .getPropertyValue("transform");
+    if (transformMatrix !== "none") {
+      this.setState({
+        current: parseInt(transformMatrix.split(",")[4].trim())
+      });
+    }
+  };
+
+  gestureMove = e => {
+    if (this.state.moving) {
+      const { initialPosition, current, repos } = this.state;
+      const windowWidth = window.screen.width;
+      let currentPos = ((windowWidth - e.pageX) / windowWidth) * 100;
+      const currentPosition = Math.floor(currentPos);
+      let diff = (currentPosition - initialPosition) / repos.length;
+
+      let changePos = current + diff;
+      this.setState({ current: changePos });
+    }
+  };
+
+  gestureEnd = e => {
+    this.setState({ moving: false });
+  };
+
   render() {
     const { repos: projects, width, current } = this.state;
+
+    const maxWidth = -100 + 100 / projects.length;
+
+    const moveBy = current < maxWidth ? maxWidth : current > 0 ? 0 : current;
 
     return (
       <section className={styles.wrapper}>
@@ -73,8 +112,14 @@ class Slider extends React.Component {
         </div>
         <div className={styles.wrapperSlides}>
           <div
-            style={{ width: `${width}%`, transform: `translateX(${current}%)` }}
+            style={{ width: `${width}%`, transform: `translateX(${moveBy}%)` }}
             className={styles.wrapperSlidesWrapper}
+            onTouchStart={this.gestureStart}
+            onTouchMove={this.gestureMove}
+            onTouchEnd={this.gestureEnd}
+            onMouseDown={this.gestureStart}
+            onMouseMove={this.gestureMove}
+            onMouseUp={this.gestureEnd}
           >
             {projects.map((project, index) => {
               const { name, html_url, description, homepage } = project;
