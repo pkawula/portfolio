@@ -1,0 +1,66 @@
+.carousel {
+  position: unset;
+}
+
+.carousel .slide {
+  background: none;
+  box-shadow: none;
+}
+
+.carousel.carousel-slider {
+  overflow: visible;
+  overflow-x: hidden;
+  position: unset;
+}
+
+.carousel.carousel-slider .control-arrow {
+  position: absolute;
+  top: -5rem;
+  right: 0rem;
+  bottom: unset;
+  left: unset;
+  padding: 0.75rem 1.25rem;
+  background: #35bf8c;
+  color: #333;
+  border: none;
+  font-weight: 600;
+  border-radius: 1rem;
+  line-height: 1;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 8px -1px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s linear;
+  opacity: 1;
+  outline: default;
+}
+
+@media screen and (max-width: 767px) {
+  .carousel.carousel-slider .control-arrow {
+    top: -3.5rem;
+  }
+}
+
+.carousel.carousel-slider .control-arrow:active {
+  transform: scale(0.97);
+}
+
+.carousel.carousel-slider .control-arrow:hover {
+  background: #35bf8c;
+}
+
+.carousel.carousel-slider .control-prev::before {
+  content: "Prev";
+  border: none;
+}
+
+.carousel.carousel-slider .control-next::before {
+  content: "Next";
+  border: none;
+}
+
+.carousel.carousel-slider .control-prev {
+  right: unset;
+  left: 0rem;
+}

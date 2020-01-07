@@ -5,7 +5,7 @@ import WebImage from "../../assets/images/icons/web.svg";
 
 const Slide = ({ title, description, demo, code }) => {
   return (
-    <section className={styles.slideWrapper}>
+    <div className={styles.slideWrapper}>
       <div className={styles.slideWrapperContainer}>
         <div className={styles.slideWrapperDescription}>
           <h3 className={styles.slideWrapperDescriptionTitle}>{title}</h3>
@@ -66,7 +66,7 @@ const Slide = ({ title, description, demo, code }) => {
           ></img>
         </section>
       </section>
-    </section>
+    </div>
   );
 };
 
