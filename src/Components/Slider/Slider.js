@@ -9,7 +9,27 @@ const api = "https://api.github.com/users/pkawula/repos";
 
 class Slider extends React.Component {
   state = {
-    repos: []
+    repos: [],
+    images: []
+  };
+
+  getImages = async (owner, repo) => {
+    const req = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/contents/src/images`
+    );
+    const data = await req.json();
+
+    await console.log(data);
+
+    if (data.length) {
+      await data.forEach(item => {
+        if (item.name.split(".").pop() === ["png", "jpg", "jpeg"]) {
+          this.setState({
+            images: { [item.name]: item.download_url }
+          });
+        }
+      });
+    }
   };
 
   async componentDidMount() {
@@ -17,6 +37,11 @@ class Slider extends React.Component {
       const data = await fetch(api);
       const repos = await data.json();
       await this.setState({ repos: repos });
+
+      await repos.forEach(repo => {
+        const { owner, name: title } = repo;
+        this.getImages(owner.login, title);
+      });
 
       if (!data.ok) {
         throw Error(data.statusText);

@@ -4,6 +4,23 @@ import GithubImage from "../../assets/images/icons/github-dark.svg";
 import WebImage from "../../assets/images/icons/web.svg";
 
 const Slide = ({ title, description, demo, code }) => {
+  let images = [];
+
+  // (async () => {
+  //   const req = await fetch(
+  //     `https://api.github.com/repos/${nickname}/${title}/contents/src/images`
+  //   );
+  //   const data = await req.json();
+  //   console.log(data);
+
+  //   data.map(item => {
+  //     if (item.name.split(".").pop() === ["png", "jpg", "jpeg"]) {
+  //       images.push(item.download_url);
+  //       console.log(item.download_url);
+  //     }
+  //   });
+  // })();
+
   return (
     <div className={styles.slideWrapper}>
       <div className={styles.slideWrapperContainer}>
@@ -49,21 +66,23 @@ const Slide = ({ title, description, demo, code }) => {
           <span className={styles.slideWrapperGalleryControlsBtn}>{">"}</span>
         </div>
         <section className={styles.slideWrapperGallerySlides}>
-          <img
-            className={styles.slideWrapperGallerySlidesSlide}
-            src="https://via.placeholder.com/1920x1080"
-            alt="img"
-          ></img>
-          <img
-            className={styles.slideWrapperGallerySlidesSlide}
-            src="https://via.placeholder.com/1920x1080"
-            alt="img"
-          ></img>
-          <img
-            className={styles.slideWrapperGallerySlidesSlide}
-            src="https://via.placeholder.com/1920x1080"
-            alt="img"
-          ></img>
+          {images.length ? (
+            images.map(img => {
+              return (
+                <img
+                  src={img}
+                  alt={title}
+                  className={styles.slideWrapperGallerySlidesSlide}
+                />
+              );
+            })
+          ) : (
+            <img
+              className={styles.slideWrapperGallerySlidesSlide}
+              src="https://via.placeholder.com/1920x1080"
+              alt="img"
+            ></img>
+          )}
         </section>
       </section>
     </div>
