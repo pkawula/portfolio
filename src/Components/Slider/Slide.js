@@ -3,24 +3,7 @@ import styles from "./Slide.module.scss";
 import GithubImage from "../../assets/images/icons/github-dark.svg";
 import WebImage from "../../assets/images/icons/web.svg";
 
-const Slide = ({ title, description, demo, code }) => {
-  let images = [];
-
-  // (async () => {
-  //   const req = await fetch(
-  //     `https://api.github.com/repos/${nickname}/${title}/contents/src/images`
-  //   );
-  //   const data = await req.json();
-  //   console.log(data);
-
-  //   data.map(item => {
-  //     if (item.name.split(".").pop() === ["png", "jpg", "jpeg"]) {
-  //       images.push(item.download_url);
-  //       console.log(item.download_url);
-  //     }
-  //   });
-  // })();
-
+const Slide = ({ title, description, demo, code, images }) => {
   return (
     <div className={styles.slideWrapper}>
       <div className={styles.slideWrapperContainer}>
@@ -66,11 +49,11 @@ const Slide = ({ title, description, demo, code }) => {
           <span className={styles.slideWrapperGalleryControlsBtn}>{">"}</span>
         </div>
         <section className={styles.slideWrapperGallerySlides}>
-          {images.length ? (
-            images.map(img => {
+          {images[title].length ? (
+            images[title].forEach((image, index) => {
               return (
                 <img
-                  src={img}
+                  src={image[index]}
                   alt={title}
                   className={styles.slideWrapperGallerySlidesSlide}
                 />

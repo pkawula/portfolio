@@ -19,22 +19,22 @@ class Slider extends React.Component {
     );
     const data = await req.json();
 
-    let allImages = [];
+    let arrayOfImages = [];
+
     if (data.length) {
       await data.forEach(item => {
         if (
           item.name.split(".").pop() === "png" ||
           item.name.split(".").pop() === "jpg"
         ) {
-          allImages.push(item.download_url);
+          arrayOfImages.push(item.download_url);
         }
       });
-      await this.setState({
-        images: { [repo]: allImages }
-      });
-    }
 
-    console.log(this.state.images);
+      await this.setState(prevState => ({
+        images: { ...prevState.images, [repo]: arrayOfImages }
+      }));
+    }
   };
 
   async componentDidMount() {
@@ -57,7 +57,7 @@ class Slider extends React.Component {
   }
 
   render() {
-    const { repos: projects } = this.state;
+    const { repos: projects, images } = this.state;
 
     return (
       <section className={styles.wrapper}>
@@ -79,6 +79,7 @@ class Slider extends React.Component {
                   code={html_url}
                   description={description}
                   demo={homepage}
+                  images={images}
                 ></Slide>
               );
             })}
