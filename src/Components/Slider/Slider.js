@@ -19,17 +19,22 @@ class Slider extends React.Component {
     );
     const data = await req.json();
 
-    await console.log(data);
-
+    let allImages = [];
     if (data.length) {
       await data.forEach(item => {
-        if (item.name.split(".").pop() === ["png", "jpg", "jpeg"]) {
-          this.setState({
-            images: { [item.name]: item.download_url }
-          });
+        if (
+          item.name.split(".").pop() === "png" ||
+          item.name.split(".").pop() === "jpg"
+        ) {
+          allImages.push(item.download_url);
         }
       });
+      await this.setState({
+        images: { [repo]: allImages }
+      });
     }
+
+    console.log(this.state.images);
   };
 
   async componentDidMount() {
