@@ -49,13 +49,14 @@ const Slide = ({ title, description, demo, code, images }) => {
           <span className={styles.slideWrapperGalleryControlsBtn}>{">"}</span>
         </div>
         <section className={styles.slideWrapperGallerySlides}>
-          {images[title].length ? (
-            images[title].forEach((image, index) => {
+          {images[title] ? (
+            images[title].map((image, index) => {
               return (
                 <img
-                  src={image[index]}
+                  src={image}
                   alt={title}
                   className={styles.slideWrapperGallerySlidesSlide}
+                  key={index}
                 />
               );
             })

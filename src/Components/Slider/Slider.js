@@ -52,7 +52,7 @@ class Slider extends React.Component {
         throw Error(data.statusText);
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 
@@ -79,7 +79,7 @@ class Slider extends React.Component {
                   code={html_url}
                   description={description}
                   demo={homepage}
-                  images={images}
+                  images={images[name] ? images : []}
                 ></Slide>
               );
             })}
