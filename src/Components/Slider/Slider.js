@@ -1,8 +1,8 @@
 import React from "react";
 import Slide from "./Slide";
+import styles from "./Slider.module.scss";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import styles from "./Slider.module.scss";
 import "./custom_styles.css";
 
 const api = "https://api.github.com/users/pkawula/repos";

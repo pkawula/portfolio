@@ -4,6 +4,25 @@ import GithubImage from "../../assets/images/icons/github-dark.svg";
 import WebImage from "../../assets/images/icons/web.svg";
 
 const Slide = ({ title, description, demo, code, images }) => {
+  let slidePosition = {
+    current: 0
+  };
+
+  const prevSlide = () => {
+    const { current } = slidePosition;
+
+    if (current === 0) {
+      slidePosition.current = 100;
+      console.log(`Moved left by: ${current - 100};
+Set current to ${current}`);
+    }
+    if (current >= 100) {
+      slidePosition.current = 0;
+    }
+  };
+
+  const { current } = slidePosition;
+
   return (
     <div className={styles.slideWrapper}>
       <div className={styles.slideWrapperContainer}>
@@ -18,7 +37,11 @@ const Slide = ({ title, description, demo, code, images }) => {
             href={demo}
             rel="noreferrer noopener"
             target="_blank"
-            className={styles.slideWrapperLinksLink}
+            className={
+              demo
+                ? styles.slideWrapperLinksLink
+                : styles.slideWrapperLinksLinkDisabled
+            }
           >
             <img
               className={styles.slideWrapperLinksLinkImg}
@@ -45,28 +68,38 @@ const Slide = ({ title, description, demo, code, images }) => {
       <section className={styles.slideWrapperGallery}>
         <h3 className={styles.slideWrapperGalleryTitle}>Gallery</h3>
         <div className={styles.slideWrapperGalleryControls}>
-          <span className={styles.slideWrapperGalleryControlsBtn}>{"<"}</span>
+          <span
+            className={styles.slideWrapperGalleryControlsBtn}
+            onClick={prevSlide}
+          >
+            {"<"}
+          </span>
           <span className={styles.slideWrapperGalleryControlsBtn}>{">"}</span>
         </div>
         <section className={styles.slideWrapperGallerySlides}>
-          {images[title] ? (
-            images[title].map((image, index) => {
-              return (
-                <img
-                  src={image}
-                  alt={title}
-                  className={styles.slideWrapperGallerySlidesSlide}
-                  key={index}
-                />
-              );
-            })
-          ) : (
-            <img
-              className={styles.slideWrapperGallerySlidesSlide}
-              src="https://via.placeholder.com/1920x1080"
-              alt="img"
-            ></img>
-          )}
+          <div
+            style={{ transform: `translateX(${current}%)` }}
+            className={styles.slideWrapperGallerySlidesSlide}
+          >
+            {images[title] ? (
+              images[title].map((image, index) => {
+                return (
+                  <img
+                    src={image}
+                    alt={title}
+                    className={styles.slideWrapperGallerySlidesSlideImg}
+                    key={index}
+                  />
+                );
+              })
+            ) : (
+              <img
+                className={styles.slideWrapperGallerySlidesSlide}
+                src="https://via.placeholder.com/1920x1080"
+                alt="img"
+              ></img>
+            )}
+          </div>
         </section>
       </section>
     </div>
