@@ -139,6 +139,7 @@
         align-items: center;
         justify-content: flex-start;
         margin: 0;
+        transition: transform 0.3s ease-out;
 
         &Img {
           max-width: 100%;
