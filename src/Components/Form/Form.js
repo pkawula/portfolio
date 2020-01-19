@@ -264,7 +264,7 @@ class Form extends React.Component {
               Show me that humanity is still in you {":)"}
             </p>
             <ReCAPTCHA
-              sitekey="6LcrSccUAAAAAKYXV3UJy2N9iC6ATdH-OW5Lzjb-"
+              sitekey="6LeYvtAUAAAAAB_eG_XD4a7BCPcAJQvmlJqrmIRZ"
               ref={recaptchaRef}
               onChange={this.onCaptchaChange}
               align="center"
