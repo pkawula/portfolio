@@ -5,8 +5,6 @@ import like from "../../assets/images/icons/like.png";
 import stop from "../../assets/images/icons/stop.png";
 
 const List = ({ data, children, imgok, imglike, imgstop }) => {
-  console.log(data);
-
   return (
     <article className={styles.wrapper}>
       <h3 className={styles.wrapperTitle}>{children}</h3>
