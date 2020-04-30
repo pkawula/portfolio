@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Intro.module.scss";
 import Link from "../Link/Link";
-import meImage from "../../assets/images/me.jpg";
+import meImage from "../../assets/images/me.png";
 import PageTitle from "../PageTitle/PageTitle";
 import Socials from "../Socials/Socials";
 import { NavLink } from "react-router-dom";
@@ -22,7 +22,7 @@ const Intro = () => (
           Let me introduce myself
         </h2>
         <p className={styles.wrapperIntroDescriptionParagraph}>
-          I am a 23 years old aspiring frontend Developer! I am learning JS and
+          I am a 24 years old aspiring frontend Developer! I am learning JS and
           it's features all by myself (using Internet, of course). I'm open for
           the new opportunities and would like to work as professional frontend
           developer.
