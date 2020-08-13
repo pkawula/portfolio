@@ -22,17 +22,17 @@ class Slider extends React.Component {
     let arrayOfImages = [];
 
     if (data.length) {
-      await data.forEach(item => {
+      await data.forEach(({ name, download_url }) => {
         if (
-          item.name.split(".").pop() === "png" ||
-          item.name.split(".").pop() === "jpg"
+          name.split(".").pop() === "png" ||
+          name.split(".").pop() === "jpg"
         ) {
-          arrayOfImages.push(item.download_url);
+          arrayOfImages.push(download_url);
         }
       });
 
-      await this.setState(prevState => ({
-        images: { ...prevState.images, [repo]: arrayOfImages }
+      await this.setState(({ images }) => ({
+        images: { ...images, [repo]: arrayOfImages }
       }));
     }
   };
@@ -41,18 +41,13 @@ class Slider extends React.Component {
     try {
       const data = await fetch(api);
       const repos = await data.json();
-      await this.setState({ repos: repos });
+      await this.setState({ repos });
 
-      await repos.forEach(repo => {
-        const { owner, name: title } = repo;
-        this.getImages(owner.login, title);
+      await repos.forEach(({ owner: { login }, name }) => {
+        this.getImages(login, name);
       });
-
-      if (!data.ok) {
-        throw Error(data.statusText);
-      }
     } catch (err) {
-      console.error(err);
+      throw new Error(err);
     }
   }
 
@@ -70,19 +65,16 @@ class Slider extends React.Component {
             showStatus={false}
             showIndicators={false}
           >
-            {projects.map((project, index) => {
-              const { name, html_url, description, homepage } = project;
-              return (
-                <Slide
-                  key={index}
-                  title={name}
-                  code={html_url}
-                  description={description}
-                  demo={homepage}
-                  images={images[name] ? images : []}
-                ></Slide>
-              );
-            })}
+            {projects.map(({ name, html_url, description, homepage }) =>
+              <Slide
+                key={name}
+                title={name}
+                code={html_url}
+                description={description}
+                demo={homepage}
+                images={images[name]}
+              />
+            )}
           </Carousel>
         </div>
       </section>

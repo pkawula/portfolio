@@ -2,18 +2,20 @@ import React from "react";
 import styles from "./Slide.module.scss";
 import GithubImage from "../../assets/images/icons/github-dark.svg";
 import WebImage from "../../assets/images/icons/web.svg";
+import NoImage from "../../assets/images/no_image_available.jpg";
 
 class Slide extends React.Component {
   state = {
-    currentPos: 0,
-    imagesCount: 0
+    currentPos: 0
   };
 
   prev = () => {
-    const { currentPos, imagesCount } = this.state;
-    const { images, title } = this.props;
+    const { currentPos } = this.state;
+    const { images } = this.props;
 
-    this.setState({ imagesCount: images[title].length - 1 });
+    if (!images.length) return;
+
+    const imagesCount = images.length - 1;
 
     if (currentPos === 0) {
       this.setState({ currentPos: -100 * imagesCount });
@@ -23,10 +25,12 @@ class Slide extends React.Component {
   };
 
   next = () => {
-    const { currentPos, imagesCount } = this.state;
-    const { images, title } = this.props;
+    const { currentPos } = this.state;
+    const { images } = this.props;
 
-    this.setState({ imagesCount: images[title].length - 1 });
+    if (!images.length) return;
+
+    const imagesCount = images.length - 1;
 
     if (currentPos === -100 * imagesCount) {
       this.setState({ currentPos: 0 });
@@ -38,6 +42,7 @@ class Slide extends React.Component {
   render() {
     const { title, description, demo, code, images } = this.props;
     const { currentPos } = this.state;
+
     return (
       <div className={styles.slideWrapper}>
         <div className={styles.slideWrapperContainer}>
@@ -101,24 +106,25 @@ class Slide extends React.Component {
               style={{ transform: `translateX(${currentPos}%)` }}
               className={styles.slideWrapperGallerySlidesSlide}
             >
-              {images[title] ? (
-                images[title].map((image, index) => {
-                  return (
-                    <img
-                      src={image}
-                      alt={title}
-                      className={styles.slideWrapperGallerySlidesSlideImg}
-                      key={index}
-                    />
-                  );
-                })
-              ) : (
+              {Array.isArray(images) && images.length
+                ?
+                images.map((image, index) =>
+                  <img
+                    src={image}
+                    alt={title}
+                    title={title}
+                    className={styles.slideWrapperGallerySlidesSlideImg}
+                    key={index}
+                  />
+                )
+                :
                 <img
                   className={styles.slideWrapperGallerySlidesSlide}
-                  src="https://via.placeholder.com/1920x1080"
-                  alt="img"
-                ></img>
-              )}
+                  src={NoImage}
+                  alt="This repository has missing images"
+                  title={title}
+                />
+              }
             </div>
           </section>
         </section>
