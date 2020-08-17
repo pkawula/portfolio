@@ -8,6 +8,12 @@
   position: relative;
   z-index: 3;
 
+  &_menuOpened {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+  }
+
   &__img {
     max-width: 2rem;
     display: inline-block;
@@ -32,14 +38,8 @@
     padding-left: 0.5rem;
     transition: color 0.3s linear;
 
-    &Light {
-      font-size: 1rem;
-      font-weight: 500;
+    &_menuOpened {
       color: $color-secondary;
-      display: inline;
-      text-decoration: none;
-      padding-left: 0.5rem;
-      transition: color 0.3s linear;
     }
   }
 }

@@ -7,11 +7,11 @@ import linkedinLight from "../../assets/images/icons/linkedin.png";
 import linkedinDark from "../../assets/images/icons/linkedin-dark.png";
 import Link from "../Link/Link";
 
-const Socials = ({ dark, isMenu }) => {
+const Socials = ({ dark, isMenuOpened }) => {
   const imageGit = dark ? githubDark : githubLight;
   const imageLi = dark ? linkedinDark : linkedinLight;
 
-  const sectionClass = isMenu ? styles.container : styles.containerDefault;
+  const sectionClass = isMenuOpened ? styles.container : styles.containerDefault;
 
   return (
     <section className={sectionClass}>

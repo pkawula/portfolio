@@ -4,69 +4,23 @@ import AppContext from "../../context";
 import Header from "../../Components/Header/Header";
 import Landing from "../Landing/Landing";
 import Skills from "../Skills/Skills";
-import Nav from "../../Components/Nav/Nav";
-import Menu from "../../Components/Menu/Menu";
 import NoMatchPage from "../../Components/NoMatchPage/NoMatchPage";
 import Contact from "../Contact/Contact";
 import Projects from "../Projects/Projects";
 
-class Root extends React.Component {
-  state = {
-    isMenuOpen: false,
-    hamburgerClose: false
-  };
-
-  openMenu = () => {
-    this.setState({
-      isMenuOpen: true
-    });
-  };
-
-  closeMenu = () => {
-    this.setState({
-      isMenuOpen: false
-    });
-  };
-
-  buttonOpen = () => {
-    this.setState({
-      hamburgerClose: false
-    });
-  };
-
-  buttonClose = () => {
-    this.setState({
-      hamburgerClose: true
-    });
-  };
-
-  render() {
-    const { isMenuOpen } = this.state;
-    return (
-      <BrowserRouter>
-        <AppContext.Provider>
-          {isMenuOpen ? (
-            <Header closeMenuFn={this.closeMenu} />
-          ) : (
-            <Header light />
-          )}
-          {isMenuOpen ? (
-            <Nav openMenuFn={this.closeMenu} btnClass />
-          ) : (
-            <Nav openMenuFn={this.openMenu} />
-          )}
-          <Switch>
-            <Route exact path="/" component={Landing}></Route>
-            <Route path="/skills" component={Skills}></Route>
-            <Route path="/projects" component={Projects}></Route>
-            <Route path="/contact" component={Contact}></Route>
-            <Route component={NoMatchPage}></Route>
-          </Switch>
-          {isMenuOpen && <Menu closeMenuFn={this.closeMenu} />}
-        </AppContext.Provider>
-      </BrowserRouter>
-    );
-  }
-}
+const Root = () => (
+  <BrowserRouter>
+    <AppContext.Provider>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Landing}></Route>
+        <Route path="/skills" component={Skills}></Route>
+        <Route path="/projects" component={Projects}></Route>
+        <Route path="/contact" component={Contact}></Route>
+        <Route component={NoMatchPage}></Route>
+      </Switch>
+    </AppContext.Provider>
+  </BrowserRouter>
+);
 
 export default Root;

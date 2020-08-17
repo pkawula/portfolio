@@ -9,18 +9,18 @@
     "Markdown",
     "Sass",
     "Figma",
-    "CSS animations"
-  ],
-  "knowSomethingAbout": [
+    "CSS animations",
     "JS ES6 + features",
-    "PWA - progressive web applications",
     "Git",
-    "NPM and YARN scripts",
-    "Accessibility",
     "ReactJS"
   ],
+  "knowSomethingAbout": [
+    "PWA - progressive web applications",
+    "NPM and YARN scripts",
+    "Accessibility",
+    "Typescript"
+  ],
   "wantToLearn": [
-    "Typescript",
     "Node.JS",
     "Gatsby.js",
     "GraphQL",

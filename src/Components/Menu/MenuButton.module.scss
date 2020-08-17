@@ -1,0 +1,73 @@
+@import "../../assets/scss/variables.scss";
+
+.button {
+  position: fixed;
+  top: 20px;
+  right: 16px;
+  z-index: 3;
+  width: 68px;
+  margin: auto;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+
+  span {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    background-color: $bg-secondary;
+    margin: 0;
+    padding: 0;
+    transition: background-color .3s linear;
+
+    &::before, &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      height: 5px;
+      border-radius: 5px;
+      background: inherit;
+      transition: transform .3s ease-in-out, width .3s linear;
+    }
+
+    &::before {
+      width: 75%;
+      top: -10px;
+    }
+
+    &::after {
+      width: 50%;
+      top: 10px;
+    }
+  }
+
+  &:hover span {
+    &::before, &::after {
+      width: 100%;
+    }
+  }
+
+  &_opened span {
+    background-color: transparent;
+
+    &::before {
+      transform: translateY(10px) rotate(45deg);
+      background-color: $bg-primary;
+      width: 100%;
+    }
+
+    &::after {
+      transform: translateY(-10px) rotate(-45deg);
+      background-color: $bg-primary;
+      width: 100%;
+    }
+  }
+}

@@ -119,7 +119,7 @@ class Slide extends React.Component {
                 )
                 :
                 <img
-                  className={styles.slideWrapperGallerySlidesSlide}
+                  className={styles.slideWrapperGallerySlidesSlideImg}
                   src={NoImage}
                   alt="This repository has missing images"
                   title={title}
